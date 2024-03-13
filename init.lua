@@ -75,8 +75,8 @@ require('lazy').setup({
     end,
   },
 
-  require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.indent_line',
 
   { import = 'custom.plugins' },
 }, {

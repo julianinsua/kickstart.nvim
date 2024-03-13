@@ -71,12 +71,12 @@ return { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     local servers = {
-      gopls = {},
+      gopls = require 'custom.plugins.lsp.gopls',
       pyright = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       lua_ls = {
         settings = {
-          Lua = require 'custom.plugins.lsp.lua-lsp',
+          Lua = require 'custom.plugins.lsp.lua_ls',
         },
       },
       bashls = {},
@@ -89,7 +89,9 @@ return { -- LSP Configuration & Plugins
       isort = {},
       prettierd = {},
       prettier = {},
-      jsonls = {},
+      jsonls = require 'custom.plugins.lsp.jsonls',
+      tsserver = require 'custom.plugins.lsp.tsserver',
+      remark_ls = require 'custom.plugins.lsp.remark_ls',
     }
 
     require('mason').setup()
