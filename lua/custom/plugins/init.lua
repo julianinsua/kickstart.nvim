@@ -1,5 +1,13 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-return {}
+return {
+  require 'custom.plugins.catpuccin',
+  require 'custom.plugins.conform-nvim',
+  require 'custom.plugins.gitsigns',
+  require 'custom.plugins.lsp',
+  require 'custom.plugins.lualine',
+  require 'custom.plugins.neoterm',
+  require 'custom.plugins.nvim-cmp',
+  require 'custom.plugins.nvim-tree',
+  require 'custom.plugins.file-ops', --> Needs to be loaded after nvim-tree
+  require 'custom.plugins.telescope',
+  require 'custom.plugins.treesitter',
+}
