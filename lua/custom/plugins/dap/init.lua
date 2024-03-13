@@ -21,6 +21,7 @@ return {
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
     'mxsdev/nvim-dap-vscode-js',
+    { 'microsoft/vscode-js-debug', lazy = true, build = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' },
 
     -- Add virtual text
     'theHamsta/nvim-dap-virtual-text',

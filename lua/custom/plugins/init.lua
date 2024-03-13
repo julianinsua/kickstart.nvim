@@ -1,4 +1,5 @@
 return {
+  require 'custom.plugins.autopairs',
   require 'custom.plugins.catpuccin',
   require 'custom.plugins.conform-nvim',
   require 'custom.plugins.dap',
@@ -10,6 +11,8 @@ return {
   require 'custom.plugins.nvim-cmp',
   require 'custom.plugins.nvim-tree',
   require 'custom.plugins.file-ops', --> Needs to be loaded after nvim-tree
+  require 'custom.plugins.obsidian',
+  require 'custom.plugins.session-manager',
   require 'custom.plugins.telescope',
   require 'custom.plugins.treesitter',
 }
