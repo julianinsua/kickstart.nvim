@@ -1,4 +1,5 @@
 local lsputil = require 'lspconfig.util'
+local autocmds = require 'custom.plugins.lsp.gopls.autocmd'
 
 local create_go_test_file = function()
   print 'creating test files'
@@ -39,11 +40,13 @@ local create_go_test_file = function()
   print('Test file created: ' .. test_file)
 end
 
-vim.api.nvim_create_user_command('GoCreateTestFile', create_go_test_file, {})
-
 return {
   on_attach = function(client, bufnr)
-    vim.keymap.set('n', '<leader><M-l>', '<cmd>Lspsaga outline<cr>', { noremap = true, silent = false, buffer = bufnr, desc = 'Show file out[L]ine' })
+    vim.api.nvim_create_user_command('GoCreateTestFile', autocmds.create_go_test_file, {})
+    vim.api.nvim_create_user_command('GoLiveTest', function()
+      autocmds.attach_cmd_to_buffer(vim.api.nvim_get_current_buf(), { 'go', 'test', './...', '-v', '-json' })
+    end, {})
+    -- vim.keymap.set('n', '<leader><M-l>', '<cmd>Lspsaga outline<cr>', { noremap = true, silent = false, buffer = bufnr, desc = 'Show file out[L]ine' })
   end,
   cmd = { 'gopls' },
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },

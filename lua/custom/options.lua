@@ -59,7 +59,8 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', extends = '󰌑' }
+vim.opt.listchars = { tab = ' ', trail = '·', nbsp = '␣', extends = '󰌑' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -75,3 +76,11 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Set the default tab to 2 spaces
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+
+-- Set the conceal level to work fine with Obsidian.nvim
+vim.opt.conceallevel = 1

@@ -29,6 +29,12 @@ return { -- Autocompletion
     local cmp_icons = require('custom.plugins.nvim-cmp.icons').icons
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
+    -- Custom snippets
+    require('luasnip.loaders.from_vscode').load { paths = { './lua/plugins/snippets/' } }
+
+    -- Get react snippets on .js files
+    luasnip.filetype_extend('javascript', { 'javascriptreact' })
+    require('luasnip.loaders.from_vscode').lazy_load()
 
     require('cmp_git').setup()
 
@@ -86,7 +92,7 @@ return { -- Autocompletion
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        { name = 'luasnip', option = { show_autosnippets = true } },
         { name = 'buffer' },
         { name = 'path' },
       },

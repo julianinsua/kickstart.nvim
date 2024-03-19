@@ -11,5 +11,11 @@ return { -- linting using language specific linters
       go = { 'golangcilint' },
       python = { 'pylint' },
     }
+
+    vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+      callback = function()
+        lint.try_lint()
+      end,
+    })
   end,
 }

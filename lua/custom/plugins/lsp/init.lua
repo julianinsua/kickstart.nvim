@@ -16,6 +16,7 @@ return { -- LSP Configuration & Plugins
         },
       },
     },
+    'mfussenegger/nvim-jdtls',
   },
   config = function()
     --  This function gets run when an LSP attaches to a particular buffer.
@@ -71,8 +72,6 @@ return { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     local servers = {
-      gopls = require 'custom.plugins.lsp.gopls',
-      pyright = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       lua_ls = {
         settings = {
@@ -80,18 +79,21 @@ return { -- LSP Configuration & Plugins
         },
       },
       bashls = {},
-      cssls = {},
-      cssmodules_ls = {},
-      eslint_d = {},
+      gopls = require 'custom.plugins.lsp.gopls',
       golangci_lint_ls = {},
+      pyright = {},
       pylint = {},
       black = {},
       isort = {},
+      tsserver = require 'custom.plugins.lsp.tsserver',
+      cssls = {},
+      cssmodules_ls = {},
+      eslint_d = {},
       prettierd = {},
       prettier = {},
       jsonls = require 'custom.plugins.lsp.jsonls',
-      tsserver = require 'custom.plugins.lsp.tsserver',
       remark_ls = require 'custom.plugins.lsp.remark_ls',
+      jdtls = {},
     }
 
     require('mason').setup()
@@ -114,6 +116,10 @@ return { -- LSP Configuration & Plugins
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
+        end,
+        ['jdtls'] = function()
+          print 'running java config'
+          require('jdtls').start_or_attach(require 'custom.plugins.lsp.java')
         end,
       },
     }
