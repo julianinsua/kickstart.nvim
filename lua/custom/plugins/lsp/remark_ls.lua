@@ -1,4 +1,5 @@
 return {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
   on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader><M-l>', function()
       vim.cmd 'Toc'

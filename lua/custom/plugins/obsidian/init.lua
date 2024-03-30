@@ -14,6 +14,12 @@ return {
     'nvim-lua/plenary.nvim',
   },
   opts = {
+    completion = {
+      nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+    },
+    daily_notes = {
+      folder = 'Daily',
+    },
     workspaces = {
       {
         name = 'personal',

@@ -33,15 +33,19 @@ return { -- LSP Configuration & Plugins
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition') -- Jump back with <C-t>.
         map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation') --  Useful when you declare types without an actual implementation.
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-        map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols') -- Fuzzy find variables, functions, types, etc. in your current document.
-        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols') --  Similar to document symbols, except searches over your whole project.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame') -- Rename variable. LSPs support renaming across files, etc.
+        map('gt', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        map('<leader>ssds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols') -- Fuzzy find variables, functions, types, etc. in your current document.
+        map('<leader>ssw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols') --  Similar to document symbols, except searches over your whole project.
+        map('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame') -- Rename variable. LSPs support renaming across files, etc.
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map('<leader>cd', vim.diagnostic.goto_next, '[C]ode [d]iagnostics next')
+        map('<leader>cD', vim.diagnostic.goto_prev, '[C]ode [d]iagnostics prev')
+        map('<leader>ce', vim.diagnostic.open_float, '[C]ode [e]rror hover')
+        map('<leader>cE', vim.diagnostic.setloclist, '[C]ode [E]rror quickfix list')
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header
+        --
+        -- -- WARN: This is not Goto Definition, this is Goto Declaration.
+        -- --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         -- The following two autocommands are used to highlight references of the
@@ -118,8 +122,7 @@ return { -- LSP Configuration & Plugins
           require('lspconfig')[server_name].setup(server)
         end,
         ['jdtls'] = function()
-          print 'running java config'
-          require('jdtls').start_or_attach(require 'custom.plugins.lsp.java')
+          -- require('custom.plugins.lsp.java').setup()
         end,
       },
     }
