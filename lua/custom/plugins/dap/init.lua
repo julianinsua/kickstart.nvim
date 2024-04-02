@@ -48,6 +48,8 @@ return {
         'js',
         'chrome',
         'node2',
+        'javadbg',
+        'javatest',
       },
     }
 
@@ -60,6 +62,7 @@ return {
     vim.keymap.set('n', '<leader>dB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<leader>dd', dap.terminate, { desc = 'Debug: Stop debugger' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|

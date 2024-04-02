@@ -16,7 +16,7 @@ return { -- LSP Configuration & Plugins
         },
       },
     },
-    'mfussenegger/nvim-jdtls',
+    { 'mfussenegger/nvim-jdtls', dependencies = { 'mfussenegger/nvim-dap' } },
   },
   config = function()
     --  This function gets run when an LSP attaches to a particular buffer.
@@ -107,6 +107,7 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format lua code
+      'google-java-format', -- Used to format java code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

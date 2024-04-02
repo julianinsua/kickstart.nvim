@@ -25,6 +25,12 @@ return { -- Autoformat
       markdown = { { 'prettierd', 'prettier' } },
       graphql = { { 'prettierd', 'prettier' } },
       python = { 'isort', 'black' },
+      java = { 'google-java-format' },
+    },
+    formatters = {
+      google_java_format = {
+        command = vim.fn.expand '~/.local/share/nvim-kickstart/mason/packages/google-java-format/google-java-format',
+      },
     },
   },
 }

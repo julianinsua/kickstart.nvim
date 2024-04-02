@@ -20,7 +20,7 @@ M.setup = function()
   local ws_path = vim.fn.expand '~/.cache/jdtls/workspace' .. project_name
 
   local bundles = {
-    vim.fn.glob(jdebug_path .. '~/.local/share/nvim-kickstart/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar'),
+    vim.fn.glob(jdebug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar', 1),
   }
 
   vim.list_extend(bundles, vim.split(vim.fn.glob(jtest_path .. '/extension/server/*.jar', true), '\n'))
