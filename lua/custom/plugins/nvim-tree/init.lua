@@ -23,6 +23,12 @@ return {
   config = function()
     require('nvim-tree').setup {
       on_attach = onAttach,
+      view = {
+        width = 50,
+      },
+      renderer = {
+        group_empty = true,
+      },
     }
     vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<cr>')
   end,

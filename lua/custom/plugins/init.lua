@@ -15,4 +15,6 @@ return {
   require 'custom.plugins.session-manager',
   require 'custom.plugins.telescope',
   require 'custom.plugins.treesitter',
+  require 'custom.plugins.oil',
+  require 'custom.plugins.gx',
 }
