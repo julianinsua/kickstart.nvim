@@ -30,6 +30,6 @@ return {
         group_empty = true,
       },
     }
-    vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<cr>')
+    vim.keymap.set('n', '<leader>vt', ':NvimTreeToggle<cr>', { desc = '[V]im [T]ree' })
   end,
 }
