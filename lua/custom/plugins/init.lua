@@ -2,6 +2,7 @@ return {
   require 'custom.plugins.autopairs',
   require 'custom.plugins.catpuccin',
   require 'custom.plugins.conform-nvim',
+  require 'custom.plugins.dadbod',
   require 'custom.plugins.dap',
   require 'custom.plugins.dressing',
   require 'custom.plugins.fugitive',
@@ -9,6 +10,7 @@ return {
   require 'custom.plugins.gx',
   require 'custom.plugins.indent-blankline',
   require 'custom.plugins.lsp',
+  require 'custom.plugins.lua-rocks',
   require 'custom.plugins.lualine',
   require 'custom.plugins.markdown-preview',
   require 'custom.plugins.vim-maximizer',
@@ -20,6 +22,7 @@ return {
   require 'custom.plugins.file-ops', --> Needs to be loaded after nvim-tree
   require 'custom.plugins.obsidian',
   require 'custom.plugins.oil',
+  require 'custom.plugins.rest-nvim',
   require 'custom.plugins.session-manager',
   require 'custom.plugins.stay-centered',
   require 'custom.plugins.telescope',

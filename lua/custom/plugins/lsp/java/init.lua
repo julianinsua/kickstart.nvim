@@ -7,14 +7,17 @@ M.setup = function()
 
   local root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }
   local root_dir = jdtls_setup.find_root(root_markers)
-  local mason_path = vim.fn.expand '~/.local/share/nvim-kickstart/mason/packages'
+  local mason_path = vim.fn.expand '~/.local/share/nvim/mason/packages'
   local jdtls_path = mason_path .. '/jdtls'
   local jdebug_path = mason_path .. '/java-debug-adapter'
   local jtest_path = mason_path .. '/java-test'
 
   local config_path = jdtls_path .. '/config_linux'
   local lombok_path = jdtls_path .. '/lombok.jar'
-  local jar_path = jdtls_path .. '/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar'
+  -- You need to change the launcher to your specific version: here's a full path example
+  -- ~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar
+  local jar_path = jdtls_path .. '/plugins/org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar'
+  -- TODO: Make a function to resolve this path without having to manually set it up
 
   local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
   local ws_path = vim.fn.expand '~/.cache/jdtls/workspace' .. project_name
