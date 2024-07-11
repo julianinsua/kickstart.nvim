@@ -17,6 +17,7 @@ return {
   require 'custom.plugins.neoterm',
   require 'custom.plugins.neotest',
   require 'custom.plugins.nvim-cmp',
+  require 'custom.plugins.nvim-coverage',
   require 'custom.plugins.nvim-lint',
   require 'custom.plugins.nvim-tree',
   require 'custom.plugins.file-ops', --> Needs to be loaded after nvim-tree

@@ -3,25 +3,25 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
   'lewis6991/gitsigns.nvim',
   opts = {
     signs = {
-      add = { hl = 'gitsignsadd', text = '│', numhl = 'gitsignsaddnr', linehl = 'gitsignsaddln' },
-      change = { hl = 'gitsignschange', text = '│', numhl = 'gitsignschangenr', linehl = 'gitsignschangeln' },
-      delete = { hl = 'gitsignsdelete', text = '_', numhl = 'gitsignsdeletenr', linehl = 'gitsignsdeleteln' },
-      topdelete = { hl = 'gitsignsdelete', text = '‾', numhl = 'gitsignsdeletenr', linehl = 'gitsignsdeleteln' },
-      changedelete = { hl = 'gitsignschange', text = '~', numhl = 'gitsignschangenr', linehl = 'gitsignschangeln' },
-      untracked = { hl = 'gitsignsadd', text = '┆', numhl = 'gitsignsaddnr', linehl = 'gitsignsaddln' },
+      add = { text = '│' },
+      change = { text = '│' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked = { text = '┆' },
     },
     on_attach = function(bufnr)
       local gitsigns = require 'gitsigns'
 
-      vim.keymap.set('n', '<leader>ch', function()
+      vim.keymap.set('n', '<leader>gh', function()
         gitsigns.nav_hunk 'next'
-      end, { buffer = bufnr, desc = '[C]ode next git [H]unk' })
+      end, { buffer = bufnr, desc = 'Next [G]it [H]unk' })
 
-      vim.keymap.set('n', '<leader>cH', function()
+      vim.keymap.set('n', '<leader>gH', function()
         gitsigns.nav_hunk 'prev'
-      end, { buffer = bufnr, desc = '[C]ode previous git [H]unk' })
+      end, { buffer = bufnr, desc = 'Previous [G]it [H]unk' })
 
-      vim.keymap.set('n', '<leader>cB', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = '[C]ode [B]lame' })
+      vim.keymap.set('n', '<leader>gl', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = '[G]it [L]ine Blame' })
     end,
   },
 }
