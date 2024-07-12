@@ -32,6 +32,8 @@ return {
         group_empty = true,
       },
     }
+
     vim.keymap.set('n', '<leader>cf', ':NvimTreeToggle<cr>', { desc = '[C]ode [F]iles' })
+
   end,
 }
