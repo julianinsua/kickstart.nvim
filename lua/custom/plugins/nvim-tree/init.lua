@@ -24,12 +24,16 @@ return {
     require('nvim-tree').setup {
       on_attach = onAttach,
       view = {
+        adaptive_size = true,
+        side = 'right',
         width = 50,
       },
       renderer = {
         group_empty = true,
       },
     }
-    vim.keymap.set('n', '<leader>vt', ':NvimTreeToggle<cr>', { desc = '[V]im [T]ree' }) -- testing Neogit
+
+    vim.keymap.set('n', '<leader>cf', ':NvimTreeToggle<cr>', { desc = '[C]ode [F]iles' })
+
   end,
 }

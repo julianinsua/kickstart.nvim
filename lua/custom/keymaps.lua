@@ -1,8 +1,8 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- [V]IM keybindings
-vim.keymap.set('n', '<leader>vb', ':bnext<cr>', { silent = true, desc = 'buffer next' })
-vim.keymap.set('n', '<leader>vB', ':bprevious<cr>', { silent = true, desc = 'buffer previous' })
+vim.keymap.set('n', '<leader>b', ':bnext<cr>', { silent = true, desc = 'buffer next' })
+vim.keymap.set('n', '<leader>B', ':bprevious<cr>', { silent = true, desc = 'buffer previous' })
 vim.keymap.set('n', '<leader>vt', ':tabnext<cr>', { silent = true, desc = 'tab next' })
 vim.keymap.set('n', '<leader>vT', ':tabprevious<cr>', { silent = true, desc = 'tab previous' })
 vim.keymap.set('n', '<leader>vnv', '<C-w>v', { desc = 'new vertical split', silent = true })

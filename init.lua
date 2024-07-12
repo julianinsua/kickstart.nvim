@@ -31,6 +31,7 @@ require('lazy').setup({
         ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
         ['<leader>o'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]est', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[R]EST', _ = 'which_key_ignore' },
       }
     end,
   },
