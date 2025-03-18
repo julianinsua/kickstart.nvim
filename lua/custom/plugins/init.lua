@@ -19,8 +19,10 @@ return {
   require 'custom.plugins.nvim-cmp',
   require 'custom.plugins.nvim-coverage',
   require 'custom.plugins.nvim-lint',
+  require 'custom.plugins.nvim-springtime',
   require 'custom.plugins.nvim-tree',
   require 'custom.plugins.file-ops', --> Needs to be loaded after nvim-tree
+  require 'custom.plugins.nvim-ts-autotag',
   require 'custom.plugins.obsidian',
   require 'custom.plugins.oil',
   require 'custom.plugins.rest-nvim',

@@ -27,17 +27,25 @@ return { -- Autocompletion
     local cmp = require 'cmp'
     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
     local cmp_icons = require('custom.plugins.nvim-cmp.icons').icons
-    local luasnip = require 'luasnip'
+    local ls = require 'luasnip'
 
-    luasnip.config.set_config {
+    ls.config.set_config {
       enable_autosnippets = true,
+      store_selection_keys = '<C-Space>',
     }
-    -- Custom snippets
+
+    -- For a very comprehensive tutorial on snippets check:
+    -- https://ejmastnak.com/tutorials/vim-latex/luasnip/#advanced-nodes
+    -- Custom snippets, simple VSCode like
     require('luasnip.loaders.from_vscode').lazy_load()
     require('luasnip.loaders.from_vscode').load { paths = { './lua/custom/snippets/' } }
+    -- Smart snippets using LuaSnip, Treesitter, LSP, etc.
+    require('luasnip.loaders.from_lua').load { paths = { './lua/custom/snippets/from_lua' } }
 
-    -- Get react snippets on .js files
-    luasnip.filetype_extend('javascript', { 'javascriptreact' })
+    -- Get javascriptreact snippets on .js files
+    ls.filetype_extend('javascript', { 'javascriptreact' })
+    -- Get typescriptreact snippets on .ts files
+    ls.filetype_extend('typescript', { 'typescriptreact' })
 
     require('cmp_git').setup()
 
@@ -46,7 +54,7 @@ return { -- Autocompletion
     cmp.setup {
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          ls.lsp_expand(args.body)
         end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
@@ -83,14 +91,22 @@ return { -- Autocompletion
 
         -- <c-l> and <c-h> move to the next or previous field of your snippet.
         ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
+          if ls.expand_or_locally_jumpable() then
+            ls.expand_or_jump()
           end
         end, { 'i', 's' }),
         ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
+          if ls.locally_jumpable(-1) then
+            ls.jump(-1)
           end
+        end, { 'i', 's' }),
+        ['<C-u>'] = cmp.mapping(function()
+          if ls.choice_active() then
+            ls.change_choice(1)
+          end
+        end),
+        ['<C-z>'] = cmp.mapping(function()
+          ls.unlink_current()
         end, { 'i', 's' }),
       },
       sources = {
@@ -100,7 +116,6 @@ return { -- Autocompletion
         { name = 'path' },
       },
     }
-
     -- Set configuration for specific filetype.
     cmp.setup.filetype('gitcommit', {
       sources = cmp.config.sources({

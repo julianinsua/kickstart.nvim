@@ -20,20 +20,16 @@ require('lazy').setup({
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>v'] = { name = '[V]im', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
-        ['<leader>o'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]est', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]EST', _ = 'which_key_ignore' },
-      }
-    end,
+    keys = {
+      { '<leader>c', group = '[C]ode' },
+      { '<leader>r', group = '[R]EST' },
+      { '<leader>s', group = '[S]earch' },
+      { '<leader>v', group = '[V]im' },
+      { '<leader>o', group = '[O]bsidian' },
+      { '<leader>d', group = '[D]ebug' },
+      { '<leader>t', group = '[T]est' },
+    },
+    opts = {},
   },
 
   { -- Collection of various small independent plugins/modules

@@ -16,14 +16,15 @@ M.setup = function()
   local lombok_path = jdtls_path .. '/lombok.jar'
   -- You need to change the launcher to your specific version: here's a full path example
   -- ~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar
-  local jar_path = jdtls_path .. '/plugins/org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar'
+  --
+  local jar_path = vim.fn.glob(jdtls_path .. '/plugins/org.eclipse.equinox.launcher_*.jar', true)
   -- TODO: Make a function to resolve this path without having to manually set it up
 
   local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
   local ws_path = vim.fn.expand '~/.cache/jdtls/workspace' .. project_name
 
   local bundles = {
-    vim.fn.glob(jdebug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar', 1),
+    vim.fn.glob(jdebug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar', true),
   }
 
   vim.list_extend(bundles, vim.split(vim.fn.glob(jtest_path .. '/extension/server/*.jar', true), '\n'))

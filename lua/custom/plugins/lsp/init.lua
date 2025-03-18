@@ -89,15 +89,19 @@ return { -- LSP Configuration & Plugins
       pylint = {},
       black = {},
       isort = {},
-      tsserver = require 'custom.plugins.lsp.tsserver',
+      ts_ls = require 'custom.plugins.lsp.tsserver',
       cssls = {},
       cssmodules_ls = {},
       eslint_d = {},
+      eslint = {},
       prettierd = {},
       prettier = {},
       jsonls = require 'custom.plugins.lsp.jsonls',
       remark_ls = require 'custom.plugins.lsp.remark_ls',
       jdtls = {},
+      clangd = {},
+      kotlin_language_server = {},
+      tailwindcss = {},
     }
 
     require('mason').setup()
@@ -120,6 +124,7 @@ return { -- LSP Configuration & Plugins
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          -- This is a workaround because lspconfig changed tsserver to ts_ls, but mason didn't
           require('lspconfig')[server_name].setup(server)
         end,
         ['jdtls'] = function()

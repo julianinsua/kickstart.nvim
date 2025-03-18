@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 -- debug.lua
 --
 -- Shows how to use the DAP plugin to debug your code.
@@ -50,8 +51,20 @@ return {
         'node2',
         'javadbg',
         'javatest',
+        'codelldb', --> C and C++ adapter
       },
     }
+
+    -- Customize debug symbols
+    -- `DapBreakpoint` for breakpoints (default: `B`)
+    -- `DapBreakpointCondition` for conditional breakpoints (default: `C`)
+    -- `DapLogPoint` for log points (default: `L`)
+    -- `DapStopped` to indicate where the debugee is stopped (default: `→`)
+    -- `DapBreakpointRejected`
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapLogPoint', { text = '', texthl = '', linehl = '', numhl = '' })
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<leader>ds', dap.continue, { desc = 'Debug: Start/Continue' })
@@ -93,10 +106,11 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    -- Install golang specific config
+    -- golang specific config
     require('dap-go').setup()
     require('dap-vscode-js').setup(require 'custom.plugins.dap.dap-vscode-js')
 
+    -- TS & JS Specific config
     for _, language in ipairs { 'typescript', 'javascript' } do
       dap.configurations[language] = {
         {
@@ -130,5 +144,30 @@ return {
         },
       }
     end
+
+    -- C/C++ Specifc config
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '${port}',
+      executable = {
+        command = vim.fn.expand '~/.local/share/nvim/mason/packages/codelldb/codelldb',
+        args = { '--port', '${port}' },
+      },
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+
+    dap.configurations.c = dap.configurations.cpp
   end,
 }

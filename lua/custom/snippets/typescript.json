@@ -1,0 +1,61 @@
+{
+  "React component using typescript, arrow function and default export": {
+    "prefix": ["tfce"],
+    "body": [
+      "import React from \"react\"",
+      "import type { FC } from \"react\"",
+      "",
+      "type PropTypes = {}",
+      "",
+      "const ${TM_FILENAME_BASE}: FC<PropTypes> = ({}) => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "${TM_FILENAME_BASE}.defaultProps = {}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "description": "React component using typescript, arrow function and default export"
+  },
+  "Create useRef Boilerplate": {
+    "prefix": ["urf"],
+    "body": ["const ref = useRef<${0:TypeOrHTMLElement} | null>(null)"],
+    "description": "Create useRef Boilerplate"
+  },
+  "Create useCallback Boilerplate": {
+    "prefix": ["ucb"],
+    "body": [
+      "const ${0:functionName} = useCallback(($2) => ${1:functionBody}, [])"
+    ],
+    "description": "Create useCallback Boilerplate"
+  },
+  "Create useMemo Boilerplate": {
+    "prefix": ["umm"],
+    "body": [
+      "const ${0:memoizedName} = useMemo(() => ${1:calculations}, [${2:dependencies}])"
+    ],
+    "description": "Create useMemo Boilerplate"
+  },
+  "Create Mouse Click Handler Boilerplate": {
+    "prefix": ["clk"],
+    "body": [
+      "const ${1:handleClick}: MouseEventHandler<${2:HTMLElement}> = useCallback((e) => {",
+      "\t${0:functionBody})",
+      "}, [${3:dependencies}]"
+    ],
+    "description": "Create useRef Boilerplate"
+  },
+  "Create input change Handler Boilerplate": {
+    "prefix": ["cng"],
+    "body": [
+      "const ${1:handleChange}: ChangeEvent<${2:HTMLInputElement}> = useCallback((e) => {",
+      "\t${0:functionBody})",
+      "}, [${3:dependencies}]"
+    ],
+    "description": "Create useRef Boilerplate"
+  }
+}

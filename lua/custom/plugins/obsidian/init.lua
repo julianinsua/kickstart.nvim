@@ -17,6 +17,7 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   opts = {
+    ui = { enable = false },
     completion = {
       nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
     },

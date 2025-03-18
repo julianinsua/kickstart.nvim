@@ -9,6 +9,8 @@ vim.keymap.set('n', '<leader>vnv', '<C-w>v', { desc = 'new vertical split', sile
 vim.keymap.set('n', '<leader>vnx', '<C-w>s', { desc = 'new horizontal split', silent = true })
 vim.keymap.set('n', '<leader>vnt', '<cmd>tabnew<CR>', { desc = 'new tab', silent = true })
 vim.keymap.set('n', '<leader>vnb', '<cmd>enew<CR>', { desc = 'new buffer', silent = true })
+vim.keymap.set('n', 'vgd', ':vsplit | lua vim.lsp.buf.definition()<CR>', { desc = '[G]o to definition in [V]ertical split', silent = true })
+vim.keymap.set('n', 'hgd', ':split | lua vim.lsp.buf.definition()<CR>', { desc = '[G]o to definition in [H]orizontal split', silent = true })
 
 -- Exit terminal mode
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
