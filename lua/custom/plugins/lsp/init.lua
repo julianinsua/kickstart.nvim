@@ -102,6 +102,7 @@ return { -- LSP Configuration & Plugins
       clangd = {},
       kotlin_language_server = {},
       tailwindcss = {},
+      astro = {}
     }
 
     require('mason').setup()
