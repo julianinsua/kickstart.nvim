@@ -27,7 +27,10 @@ return {
     workspaces = {
       {
         name = 'personal',
-        path = '~/Dropbox/obsidian-vault/',
+        -- MacOS path for dropbox vault
+        path = '~/Library/CloudStorage/Dropbox/obsidian-vault',
+        -- Linux path for dropbox vault
+        -- path = '~/Dropbox/obsidian-vault/',
       },
     },
     mappings = {

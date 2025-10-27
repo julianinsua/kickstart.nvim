@@ -30,6 +30,9 @@ return { -- LSP Configuration & Plugins
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
+        -- Enable virtual text
+        vim.diagnostic.config { virtual_text = true }
+
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition') -- Jump back with <C-t>.
         map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation') --  Useful when you declare types without an actual implementation.
@@ -41,7 +44,7 @@ return { -- LSP Configuration & Plugins
         map('<leader>cd', vim.diagnostic.goto_next, '[C]ode [d]iagnostics next')
         map('<leader>cD', vim.diagnostic.goto_prev, '[C]ode [d]iagnostics prev')
         map('<leader>ce', vim.diagnostic.open_float, '[C]ode [e]rror hover')
-        map('<leader>cE', vim.diagnostic.setloclist, '[C]ode [E]rror quickfix list')
+        map('<leader>cE', '<cmd>Trouble diagnostics toggle<cr>', '[C]ode [E]rror quickfix list')
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
         --
         -- -- WARN: This is not Goto Definition, this is Goto Declaration.
@@ -102,7 +105,7 @@ return { -- LSP Configuration & Plugins
       clangd = {},
       kotlin_language_server = {},
       tailwindcss = {},
-      astro = {}
+      astro = {},
     }
 
     require('mason').setup()

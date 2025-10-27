@@ -5,9 +5,21 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local d = ls.dynamic_node
+local c = ls.choice_node
 local fmt = require('luasnip.extras.fmt').fmt
 local fmta = require('luasnip.extras.fmt').fmta
 local rep = require('luasnip.extras').rep
+
+local function pascal_case_filename()
+  return f(function(_, snip)
+    local name = snip.env.TM_FILENAME_BASE or 'ComponentName'
+    return name
+      :gsub('[-_](.)', function(c)
+        return c:upper()
+      end)
+      :gsub('^%l', string.upper)
+  end, {})
+end
 
 -- get_visual gets the text stored from a selection, if it's empty it returns an empty insert node
 local get_visual = function(args, parent)
@@ -87,33 +99,21 @@ return {
   s(
     { trig = 'tgv', description = 'Create a new Typescript React component', snippetType = 'autosnippet' },
     fmta(
-      [[import React from "react"
-import type { FC } from "react"
+      [[type <>Props= {}
 
-type PropTypes = {}
-
-const <>: FC<<PropTypes>> = ({}) =>> {
+export const <> = ({}: <>Props) =>> {
   return (
     <<div>>
       <>
     <</div>>
   )
 }
-
-<>.defaultProps = {}
-
-export default <>
   ]],
       {
-        d(1, function(args, parent)
-          if parent.snippet.TM_FILENAME_BASE then
-            return i(nil, parent.snippet.TM_FILENAME_BASE)
-          end
-          return i(nil, 'ComponentName')
-        end),
-        rep(1),
-        rep(1),
-        rep(1),
+        pascal_case_filename(),
+        pascal_case_filename(),
+        pascal_case_filename(),
+        pascal_case_filename(),
       }
     )
   ),
